@@ -1415,7 +1415,7 @@ var tempDouble;
 var tempI64;
 
 var ASM_CONSTS = {
- 51492: function($0) {
+ 51444: function($0) {
   var str = UTF8ToString($0) + "\n\n" + "Abort/Retry/Ignore/AlwaysIgnore? [ariA] :";
   var reply = window.prompt(str, "i");
   if (reply === null) {
@@ -1423,7 +1423,7 @@ var ASM_CONSTS = {
   }
   return allocate(intArrayFromString(reply), "i8", ALLOC_NORMAL);
  },
- 51717: function($0, $1, $2) {
+ 51669: function($0, $1, $2) {
   var w = $0;
   var h = $1;
   var pixels = $2;
@@ -1494,7 +1494,7 @@ var ASM_CONSTS = {
   SDL2.ctx.putImageData(SDL2.image, 0, 0);
   return 0;
  },
- 53172: function($0, $1, $2, $3, $4) {
+ 53124: function($0, $1, $2, $3, $4) {
   var w = $0;
   var h = $1;
   var hot_x = $2;
@@ -1531,36 +1531,36 @@ var ASM_CONSTS = {
   stringToUTF8(url, urlBuf, url.length + 1);
   return urlBuf;
  },
- 54161: function($0) {
+ 54113: function($0) {
   if (Module["canvas"]) {
    Module["canvas"].style["cursor"] = UTF8ToString($0);
   }
   return 0;
  },
- 54254: function() {
+ 54206: function() {
   if (Module["canvas"]) {
    Module["canvas"].style["cursor"] = "none";
   }
  },
- 54323: function() {
+ 54275: function() {
   return screen.width;
  },
- 54348: function() {
+ 54300: function() {
   return screen.height;
  },
- 54374: function() {
+ 54326: function() {
   return window.innerWidth;
  },
- 54404: function() {
+ 54356: function() {
   return window.innerHeight;
  },
- 54435: function($0) {
+ 54387: function($0) {
   if (typeof setWindowTitle !== "undefined") {
    setWindowTitle(UTF8ToString($0));
   }
   return 0;
  },
- 54530: function() {
+ 54482: function() {
   if (typeof AudioContext !== "undefined") {
    return 1;
   } else if (typeof webkitAudioContext !== "undefined") {
@@ -1568,7 +1568,7 @@ var ASM_CONSTS = {
   }
   return 0;
  },
- 54667: function() {
+ 54619: function() {
   if (typeof navigator.mediaDevices !== "undefined" && typeof navigator.mediaDevices.getUserMedia !== "undefined") {
    return 1;
   } else if (typeof navigator.webkitGetUserMedia !== "undefined") {
@@ -1576,7 +1576,7 @@ var ASM_CONSTS = {
   }
   return 0;
  },
- 54891: function($0) {
+ 54843: function($0) {
   if (typeof Module["SDL2"] === "undefined") {
    Module["SDL2"] = {};
   }
@@ -1598,11 +1598,11 @@ var ASM_CONSTS = {
   }
   return SDL2.audioContext === undefined ? -1 : 0;
  },
- 55384: function() {
+ 55336: function() {
   var SDL2 = Module["SDL2"];
   return SDL2.audioContext.sampleRate;
  },
- 55452: function($0, $1, $2, $3) {
+ 55404: function($0, $1, $2, $3) {
   var SDL2 = Module["SDL2"];
   var have_microphone = function(stream) {
    if (SDL2.capture.silenceTimer !== undefined) {
@@ -1643,7 +1643,7 @@ var ASM_CONSTS = {
    }, have_microphone, no_microphone);
   }
  },
- 57104: function($0, $1, $2, $3) {
+ 57056: function($0, $1, $2, $3) {
   var SDL2 = Module["SDL2"];
   SDL2.audio.scriptProcessorNode = SDL2.audioContext["createScriptProcessor"]($1, 0, $0);
   SDL2.audio.scriptProcessorNode["onaudioprocess"] = function(e) {
@@ -1655,7 +1655,7 @@ var ASM_CONSTS = {
   };
   SDL2.audio.scriptProcessorNode["connect"](SDL2.audioContext["destination"]);
  },
- 57514: function($0, $1) {
+ 57466: function($0, $1) {
   var SDL2 = Module["SDL2"];
   var numChannels = SDL2.capture.currentCaptureBuffer.numberOfChannels;
   for (var c = 0; c < numChannels; ++c) {
@@ -1674,7 +1674,7 @@ var ASM_CONSTS = {
    }
   }
  },
- 58119: function($0, $1) {
+ 58071: function($0, $1) {
   var SDL2 = Module["SDL2"];
   var numChannels = SDL2.audio.currentOutputBuffer["numberOfChannels"];
   for (var c = 0; c < numChannels; ++c) {
@@ -1687,7 +1687,7 @@ var ASM_CONSTS = {
    }
   }
  },
- 58599: function($0) {
+ 58551: function($0) {
   var SDL2 = Module["SDL2"];
   if ($0) {
    if (SDL2.capture.silenceTimer !== undefined) {
@@ -6251,24 +6251,6 @@ function _TTF_OpenFont(filename, size) {
  return id;
 }
 
-function _TTF_RenderText_Solid(font, text, color) {
- text = UTF8ToString(text) || " ";
- var fontData = SDL.fonts[font];
- var w = SDL.estimateTextWidth(fontData, text);
- var h = fontData.size;
- color = SDL.loadColorToCSSRGB(color);
- var fontString = SDL.makeFontString(h, fontData.name);
- var surf = SDL.makeSurface(w, h, 0, false, "text:" + text);
- var surfData = SDL.surfaces[surf];
- surfData.ctx.save();
- surfData.ctx.fillStyle = color;
- surfData.ctx.font = fontString;
- surfData.ctx.textBaseline = "bottom";
- surfData.ctx.fillText(text, 0, h | 0);
- surfData.ctx.restore();
- return surf;
-}
-
 function setErrNo(value) {
  SAFE_HEAP_STORE(___errno_location() | 0, value | 0, 4);
  return value;
@@ -9869,7 +9851,6 @@ function intArrayToString(array) {
 var asmLibraryArg = {
  "TTF_Init": _TTF_Init,
  "TTF_OpenFont": _TTF_OpenFont,
- "TTF_RenderText_Solid": _TTF_RenderText_Solid,
  "__sys_fcntl64": ___sys_fcntl64,
  "__sys_ioctl": ___sys_ioctl,
  "__sys_open": ___sys_open,

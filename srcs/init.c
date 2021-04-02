@@ -57,7 +57,8 @@ void init_ctx(Context *ctx)
 		i++;
 	}
 	ctx->snake->tail = head;
-	TTF_Init();
+	if (!TTF_Init())
+		SDL_Log("NO TTF");
 
 	ctx->font = TTF_OpenFont(strjoin(ASSETS_PATH, "Pixel_Font.ttf"), 14);
 }

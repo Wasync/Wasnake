@@ -15,17 +15,17 @@ void pause(Context *ctx)
 	dest.y = 10;
 	dest.h = WIN_H / 3;
 	dest.w = WIN_W - 50;
-	render_message(ctx->font, "GAME PAUSED", NULL, &dest);
+//	render_message(ctx->font, "GAME PAUSED", NULL, &dest);
 
 	dest.x = WIN_W / 4;
 	dest.y += dest.h;
 	dest.w = WIN_W / 2;
-	render_message(ctx->font, strjoin("Score : ", itoa(ctx->score)), NULL, &dest);
+//	render_message(ctx->font, strjoin("Score : ", itoa(ctx->score)), NULL, &dest);
 	
 	dest.x = TILE_W;
 	dest.y += dest.h;
 	dest.w = WIN_W - 50;
-	render_message(ctx->font, "Space to resume", NULL, &dest);
+//	render_message(ctx->font, "Space to resume", NULL, &dest);
 }
 
 void game_over(Context *ctx)
@@ -43,17 +43,17 @@ void game_over(Context *ctx)
 	
 	dest.x = TILE_W;
 	dest.y = 10;
-	render_message(ctx->font, "GAME OVER", NULL, &dest);
+//	render_message(ctx->font, "GAME OVER", NULL, &dest);
 	
 	dest.x = WIN_W / 4;
 	dest.y += dest.h;
 	dest.w = WIN_W / 2;
-	render_message(ctx->font, strjoin("Score : ", itoa(ctx->score)), NULL, &dest);
+//	render_message(ctx->font, strjoin("Score : ", itoa(ctx->score)), NULL, &dest);
 	
 	dest.x = TILE_W;
 	dest.y += dest.h;
 	dest.w = WIN_W - 50;
-	render_message(ctx->font, "R to restart", NULL, &dest);
+//	render_message(ctx->font, "R to restart", NULL, &dest);
 }
 
 void main_loop(Context *ctx)
@@ -72,5 +72,5 @@ void main_loop(Context *ctx)
 	}
 	move_snake(ctx);
 	render_game(ctx);
-	render_message(ctx->font, strjoin("Score : ", itoa(ctx->score)), NULL, &dest);
+//	render_message(ctx->font, strjoin("Score : ", itoa(ctx->score)), NULL, &dest);
 }
